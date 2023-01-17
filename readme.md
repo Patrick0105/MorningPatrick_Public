@@ -212,29 +212,29 @@ During the development process, we used Instagram's API to implement the functio
 This program will be deployed on fly.io using Docker and will be executed periodically using Cron.
 
 ## Program Description.
-這款程式的主要目的是在 Instagram 上自動更改自己的個人資料。它會在每個整點自動執行，並將自己的自介更改為 "好棒, x點了" 的格式，x 代表當前的小時。這是一個娛樂性質的程式，主要起源是模仿派大星的梗圖與名言。
+The main purpose of this program is to automatically change your own profile on Instagram. It will automatically execute every hour and change its self-introduction to "Great, it's time for x" format, where x represents the current hour. This is an entertainment program, the main origin is to imitate Pai Daxing's memes and famous quotes.
 
-程式會先使用 requests 套件進行登入，並取得 cookie。之後再使用 datetime 套件取得當前時間，並將其轉換為 x 點的格式。之後使用 urllib3 套件對 Instagram 的 API 進行請求，將自己的自介更改為新的內容。
+The program will first use the requests package to log in and get the cookie. Then use the datetime suite to get the current time and convert it to x point format. Then use the urllib3 suite to make a request to the Instagram API to change your self-introduction to the new content.
 
-本程式會部署在 fly.io 上，並使用 cron 每個整點定時執行。程式主要分為三個部分，分別是讀取 config.json 檔案、取得當前時間、與登入 Instagram 帳號。
+This program will be deployed on fly.io and will be executed every hour using cron. The program is mainly divided into three parts, which are reading the config.json file, obtaining the current time, and logging in the Instagram account.
 
-在讀取 config.json 檔案中，它會讀取 Instagram 帳號密碼、cookie 等資訊，並將其存入全域變數 config 中。接著，程式會使用 datetime 套件取得當前時間，並將其轉換為 x 點的格式。在登入 Instagram 帳號部分，由於這部分程式碼已被註解掉，所以不會進行登入的動作。
+When reading the config.json file, it will read the Instagram account password, cookie and other information, and store them in the global variable config. Next, the program will use the datetime package to get the current time and convert it to x-point format. In the part of logging in the Instagram account, since this part of the code has been commented out, the login action will not be performed.
 
-最後，程式會使用 urllib3 套件對 Instagram 的 API 進行請求，並將自己的自介更改為新的內容。在這部分中，程式會透過使用 headers 中的 cookie 資訊來認證已經登入的帳號，並透過 API 的 endpoint 來修改自己的自介。
+Finally, the program will use the urllib3 package to make a request to the Instagram API and change its self-introduction to the new content. In this part, the program will use the cookie information in the headers to authenticate the logged-in account, and modify its self-introduction through the API endpoint.
 
-需要注意的是，這款程式是使用 Instagram 的 API 進行請求，而 Instagram 的 API 是有使用限制的，如果使用過於頻繁可能會被 Instagram 的伺服器阻擋。因此，在使用這款程式時，需要注意不要過度使用 API 以免被阻擋。
+It should be noted that this program uses Instagram's API to make requests, and Instagram's API has usage restrictions. If it is used too frequently, it may be blocked by Instagram's server. Therefore, when using this program, you need to be careful not to overuse the API to avoid being blocked.
 
-此外，在部署這個程式時，還需要注意程式所需的權限和環境變數設定，以確保程式能夠正常執行。
+In addition, when deploying this program, you also need to pay attention to the permissions and environment variable settings required by the program to ensure that the program can run normally.
 
-## 程式片段
-1. 首先，在 main.py 檔案的第一行，我們需要導入需要使用到的套件，包括 requests、json、datetime 以及 urllib3：
+## Program code snippet.
+1. First, in the main.py file, on the first line, we need to import the necessary packages, including requests, json, datetime, and urllib3:
 ```
 import requests
 import json
 from datetime import datetime, timezone, timedelta
 import urllib.parse
 ```
-2. 接下來，我們需要讀取 config.json 檔案，其中包含了 Instagram 帳號、密碼、cookie 等資訊。讀取檔案的 function 為 Load_Json，其程式碼如下：
+2. Next, we need to read the config.json file, which contains information such as Instagram account, password, and cookie. The function to read the file is called Load_Json, and its code is as follows:
 ```
 def Load_Json():
     with open('config.json','r') as f:
@@ -242,49 +242,50 @@ def Load_Json():
         config = json.load(f)
     f.close
 
-# 這個 function 會開啟 config.json 檔案並讀取其中的內容，並將其存入全域變數 config 中。
+# This function opens the config.json file and reads its contents, which are then saved in the global variable 'config'.
 ```
-3. 接下來，我們需要取得當前的時間，並將其轉換為 x 點的格式。負責取得時間的 function 為 Get_Time，其程式碼如下：
+3. Next, we need to get the current time and convert it to the format of "x o'clock". The function responsible for getting the time is called Get_Time, and its code is as follows:
 ```
 def Get_Time():
     dt1 = datetime.utcnow().replace(tzinfo=timezone.utc)
     dt2 = dt1.astimezone(timezone(timedelta(hours=8)))
     timeNow = dt2.strftime("%H")
     return timeNow
-#這個 function 會使用 datetime 套件取得當前的時間，並將其轉換為台灣時間，然後使用 strftime 方法將時間轉換為 x 點的格式。
+# This function uses the datetime library to get the current time and converts it to the Taiwan time, then uses the strftime method to convert the time to the format of "x o'clock".
 ```
-4. 接下來，我們需要登入 Instagram 帳號，並取得 cookie。登入 Instagram 帳號的 function 為 Login，其程式碼如下：
+4. Next, we need to log in to the Instagram account and get the cookie. The function responsible for logging in to Instagram is called Login, and its code is as follows:
+
 ```
 def Login():
     try:
         Load_Json()
         if len(config["cookie"]) == 0:
-            # ... 登入 Instagram 帳號的程式
-（這部分程式碼已被註解掉，所以不會進行登入的動作。如果要實現登入功能，需要在這部分程式碼中填入登入的相關程式碼）
+            # ... Login Instagram Code
+（This part of the code has been commented out, so the login action will not be performed. If you want to realize the login function, you need to fill in the relevant code of login in this part of the code）
             else:
                 pass
-                # print('免登入')
+                # print('logined')
         except Exception as e:
           print(e)
 ```
-5. 最後，我們需要對 Instagram 的 API 進行請求，並將自己的自介更改為新的內容。這部分的程式碼可能會較複雜，需要設定 headers 中的 cookie 資訊，並使用 urllib3 套件對 Instagram 的 API 進行請求。<br><br>
-需要注意的是，這部分的程式碼需要正確設定 Instagram 的endpoint 以及請求的參數，並且需要確保已經登入並取得了 cookie。否則，將無法成功修改自己的自介。
+5. Finally, we need to make a request to Instagram's API and change our bio to something new. The code of this part may be more complicated. It is necessary to set the cookie information in the headers and use the urllib3 package to make a request to the Instagram API. <br><br>
+It should be noted that this part of the code needs to correctly set the Instagram endpoint and request parameters, and it needs to be logged in and get the cookie. Otherwise, you will not be able to successfully modify your self-introduction.
 
-在部署這個程式時，還需要注意程式所需的權限和環境變數設定，以確保程式能夠正常執行。例如，需要給予程式讀取檔案的權限，並且需要設定正確的 Instagram 帳號密碼以及其他相關資訊。
+When deploying this program, you also need to pay attention to the permissions and environment variable settings required by the program to ensure that the program can run normally. For example, you need to give the program permission to read files, and you need to set the correct Instagram account password and other related information.
 
 
-## 部署
-因應 Heroku 更換收費方案，窮學生如小弟只能另闢蹊徑，經過一系列爬文後，小弟推薦 **fly.io** 與 **Render**，本專案是使用 fly.io 部署<br>
->注意：fly.io 須將程式封裝為 Dockerfile
+## deployment
+In response to Heroku changing the charging plan, poor students such as the younger brother can only find another way. After a series of crawling articles, the younger brother recommends **fly.io** and **Render**. This project is deployed using fly.io<br>
+>Note: fly.io must package the program as a Dockerfile
 
 ## Cron
-在 fly.io，目前沒有找到合適的 Cron 使用方法
-在 Render，Cron 需要額外收費，小弟荷包不夠:p
-因此，我們可以使用 **Github Actions**  的方式將專案重新部署<br><br>
->-已知Bug: GitHub Actions workflow not triggering at scheduled time<br>
->>解決方式 :<br>一些團隊使用 Jenkins CI 作業來觸發 workflow_dispatch 並強制 GitHub 每5分鐘運行一次來解決這個問題。
+In fly.io, there is currently no suitable way to use Cron
+In Render, Cron needs to be charged extra, my wallet is not enough :p
+Therefore, we can use **Github Actions** to redeploy the project<br><br>
+>-Known Bug: GitHub Actions workflow not triggering at scheduled time<br>
+>>Solution:<br>Some teams use Jenkins CI jobs to trigger workflow_dispatch and force GitHub to run every 5 minutes to solve this problem.
 
-Workflow範例<br>
+Workflow Ex.<br>
 ```
 name: MorningPatrickPush
 
@@ -317,13 +318,12 @@ jobs:
 
 
 
-## 討論
+## discuss
 
-歡迎使用 [Github Issue](https://github.com/Patrick0105/MorningPatrick_Public/issues) <br/><br/>
+Welcome to [Github Issue](https://github.com/Patrick0105/MorningPatrick_Public/issues) <br/><br/>
 
-## 特別感謝
-會在半夜三點傳梗圖給我的朋友
-
+## Special thanks to
+Will pass the memes to my friends at 3:00 in the middle of the night
 ## License
 
 Distributed under the MIT License. See ```LICENSE``` for more information.
