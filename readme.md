@@ -120,6 +120,32 @@ def Login():
 >-已知Bug: GitHub Actions workflow not triggering at scheduled time<br>
 >>解決方式 :<br>一些團隊使用 Jenkins CI 作業來觸發 workflow_dispatch 並強制 GitHub 每5分鐘運行一次來解決這個問題。
 
+Workflow範例<br>
+```
+name: MorningPatrickPush
+
+on:
+  schedule:
+  - cron: '2 * * * *'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Run commit script
+        run: |
+           git config --global user.name ${GITHUB_ACTOR}
+           git config --global user.email ${{ secrets.USER_EMAIL }}
+           git commit --allow-empty -m "PushTime: `date +'%Y-%m-%d %H:%M:%S'`" 
+           git push origin main
+```
 ## Let's all
 <p align="center">
   <img src="https://github.com/Patrick0105/MorningPatrick_Public/blob/master/GitPage/Img/3am.jpeg?raw=true">
