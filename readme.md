@@ -110,8 +110,8 @@ def Login():
 
 
 ## 部署
-因應 Heroku 更換收費方案，窮學生如小弟只能另闢蹊徑，經過一系列爬文後，小弟推薦 **fly.io** 與 **Render**，本專案是使用 Render 部署
-fly.io 須將程式封裝為 Dockerfile
+因應 Heroku 更換收費方案，窮學生如小弟只能另闢蹊徑，經過一系列爬文後，小弟推薦 **fly.io** 與 **Render**，本專案是使用 fly.io 部署<br>
+>注意：fly.io 須將程式封裝為 Dockerfile
 
 ## Cron
 在 fly.io，目前沒有找到合適的 Cron 使用方法
