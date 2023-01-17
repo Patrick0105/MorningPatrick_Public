@@ -275,7 +275,7 @@ It should be noted that this part of the code needs to correctly set the Instagr
 When deploying this program, you also need to pay attention to the permissions and environment variable settings required by the program to ensure that the program can run normally. For example, you need to give the program permission to read files, and you need to set the correct Instagram account password and other related information.
 
 
-## deployment
+## Deployment
 In response to Heroku changing the charging plan, poor students such as the younger brother can only find another way. After a series of crawling articles, the younger brother recommends **fly.io** and **Render**. This project is deployed using fly.io<br>
 >Note: fly.io must package the program as a Dockerfile
 
@@ -319,7 +319,7 @@ jobs:
 
 
 
-## discuss
+## Discuss
 
 Welcome to [Github Issue](https://github.com/Patrick0105/MorningPatrick_Public/issues) <br/><br/>
 
