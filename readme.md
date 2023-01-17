@@ -164,6 +164,7 @@ jobs:
 
 Distributed under the MIT License. See ```LICENSE``` for more information.
 <br><br><br>
+
 <figcaption>Developed by <a href="https://github.com/Patrick0105">@Patrick Fang</a></figcaption>
 <br/>--Design process sharing.
 <br />
