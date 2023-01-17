@@ -148,7 +148,7 @@ jobs:
 ```
 ## Let's all
 <p align="center">
-  <img src="https://github.com/Patrick0105/MorningPatrick_Public/blob/master/GitPage/Img/3am.jpeg?raw=true">
+  <img src="https://github.com/Patrick0105/MorningPatrick_Public/blob/master/GitPage/Img/3am.jpeg?raw=true width="auto" height="auto"">
 </p>
 
 
@@ -314,7 +314,7 @@ jobs:
 ```
 ## Let's all
 <p align="center">
-  <img src="https://github.com/Patrick0105/MorningPatrick_Public/blob/master/GitPage/Img/3am.jpeg?raw=true">
+  <img src="https://github.com/Patrick0105/MorningPatrick_Public/blob/master/GitPage/Img/3am.jpeg?raw=true width="auto" height="auto"">
 </p>
 
 
