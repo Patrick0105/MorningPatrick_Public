@@ -75,6 +75,3 @@ def Edit_Profile():
 
     response = requests.request("POST", edit_profile_api, headers=headers, data=payload)
     print(response.text)
-
-Handle_Cookies()
-Edit_Profile()
