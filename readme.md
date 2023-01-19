@@ -64,14 +64,14 @@
 
 ## 程式片段
 1. 首先，在 main.py 檔案的第一行，我們需要導入需要使用到的套件，包括 requests、json、datetime 以及 urllib3：
-```
+```py
 import requests
 import json
 from datetime import datetime, timezone, timedelta
 import urllib.parse
 ```
 2. 接下來，我們需要讀取 config.json 檔案，其中包含了 Instagram 帳號、密碼、cookie 等資訊。讀取檔案的 function 為 Load_Json，其程式碼如下：
-```
+```py
 def Load_Json():
     with open('config.json','r') as f:
         global config
@@ -81,7 +81,7 @@ def Load_Json():
 # 這個 function 會開啟 config.json 檔案並讀取其中的內容，並將其存入全域變數 config 中。
 ```
 3. 接下來，我們需要取得當前的時間，並將其轉換為 x 點的格式。負責取得時間的 function 為 Get_Time，其程式碼如下：
-```
+```py
 def Get_Time():
     dt1 = datetime.utcnow().replace(tzinfo=timezone.utc)
     dt2 = dt1.astimezone(timezone(timedelta(hours=8)))
@@ -90,7 +90,7 @@ def Get_Time():
 #這個 function 會使用 datetime 套件取得當前的時間，並將其轉換為台灣時間，然後使用 strftime 方法將時間轉換為 x 點的格式。
 ```
 4. 接下來，我們需要登入 Instagram 帳號，並取得 cookie。登入 Instagram 帳號的 function 為 Login，其程式碼如下：
-```
+```py
 def Login():
     try:
         Load_Json()
@@ -121,7 +121,7 @@ def Login():
 >>解決方式 :<br>一些團隊使用 Jenkins CI 作業來觸發 workflow_dispatch 並強制 GitHub 每5分鐘運行一次來解決這個問題。
 
 Workflow範例<br>
-```
+```yml
 name: MorningPatrickPush
 
 on:
@@ -229,14 +229,14 @@ In addition, when deploying this program, you also need to pay attention to the 
 
 ## Program code snippet.
 1. First, in the main.py file, on the first line, we need to import the necessary packages, including requests, json, datetime, and urllib3:
-```
+```py
 import requests
 import json
 from datetime import datetime, timezone, timedelta
 import urllib.parse
 ```
 2. Next, we need to read the config.json file, which contains information such as Instagram account, password, and cookie. The function to read the file is called Load_Json, and its code is as follows:
-```
+```py
 def Load_Json():
     with open('config.json','r') as f:
         global config
@@ -246,7 +246,7 @@ def Load_Json():
 # This function opens the config.json file and reads its contents, which are then saved in the global variable 'config'.
 ```
 3. Next, we need to get the current time and convert it to the format of "x o'clock". The function responsible for getting the time is called Get_Time, and its code is as follows:
-```
+```py
 def Get_Time():
     dt1 = datetime.utcnow().replace(tzinfo=timezone.utc)
     dt2 = dt1.astimezone(timezone(timedelta(hours=8)))
@@ -256,7 +256,7 @@ def Get_Time():
 ```
 4. Next, we need to log in to the Instagram account and get the cookie. The function responsible for logging in to Instagram is called Login, and its code is as follows:
 
-```
+```py
 def Login():
     try:
         Load_Json()
@@ -287,7 +287,7 @@ Therefore, we can use **Github Actions** to redeploy the project<br><br>
 >>Solution:<br>Some teams use Jenkins CI jobs to trigger workflow_dispatch and force GitHub to run every 5 minutes to solve this problem.
 
 Workflow Ex.<br>
-```
+```yml
 name: MorningPatrickPush
 
 on:
